@@ -3,7 +3,7 @@ import DayList from "./DayList";
 import "components/Application.scss";
 import Appointment from "components/Appointment/index";
 import getAppointmentsForDay from "../helpers/selectors";
-import { getInterview } from "../helpers/selectors";
+import { getInterview, getInterviewersForDay } from "../helpers/selectors";
 const axios = require('axios').default;
 
 
@@ -35,42 +35,23 @@ export default function Application(props) {
     ]).then((all) => {
       setState(prev => ({ days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
       //setState(prev => ({ days: all[0].data, appointments: all[1].data }));
-      // console.log(all[0]); // first
-      // console.log(all[1]); // second
-       //console.log(all[2]); // third
-      // const [first, second, third] = all;
-      // console.log(first, second, third);
     })    
-   // .then(response => setDays(response.data));
-  }, []);
+      //.then(response => setDays(response.data));
+    }, []);
 
   //console.log("state of appontment", state.appointments)
+
+  //filter from the state only the interviewer of the day
+  const interviewers = getInterviewersForDay(state, state.day)
+    console.log("Interviewers of the day:", interviewers)
+
+  //filter from the state only the appointment of the day
   const appointments = getAppointmentsForDay(state, state.day)
 
-  console.log("appointments", appointments)
-
-  // const schedule = appointments.map((appointment) => {
-  //   //console.log("state", state);
-  //   //console.log("Appointment.interview ", appointment.interview)
-  //   const interview = getInterview(state, appointment.interview);
-  //   //console.log("Appointment", appointment)
-  //   //console.log("Appointment.interview ", appointment.interview)
-  //   console.log("appointment.id", appointment.id)
-  //   console.log("appointment.time", appointment.time)
-  //   console.log("interview", interview)
   
-   
-  //   return (
-  //     <Appointment
-  //       key={appointment.id}
-  //       id={appointment.id}
-  //       time={appointment.time}
-  //       interview={interview}
-  //     />
-  //   );
-  // })
 
-  //console.log("Schedule", schedule);
+  //console.log("appointments", appointments)
+
 
   return (
     <main className="layout">
@@ -104,26 +85,19 @@ export default function Application(props) {
           );
         })} */}
         {appointments.map((appointment) => {
-    //console.log("state", state);
-    //console.log("Appointment.interview ", appointment.interview)
-    const interview = getInterview(state, appointment.interview);
-    //console.log("Appointment", appointment)
-    //console.log("Appointment.interview ", appointment.interview)
-    //console.log("appointment.id", appointment.id)
-    //console.log("appointment.time", appointment.time)
-    //console.log("interview", interview)
-  
-   
-    return (
-      <Appointment
-        key={appointment.id}
-        id={appointment.id}
-        time={appointment.time}
-        interview={interview}
-      />
-    );
-  })}
-       <Appointment id="last" time="5pm" />  
+          const interview = getInterview(state, appointment.interview);
+
+          return (
+            <Appointment
+              key={appointment.id}
+              id={appointment.id}
+              time={appointment.time}
+              interview={interview}
+              interviewers={interviewers}
+            />
+            );
+        })}
+        <Appointment id="last" time="5pm" />  
       </section>
     </main>
   );

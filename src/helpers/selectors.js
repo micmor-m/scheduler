@@ -38,26 +38,26 @@ export function getInterview(state, interview) {
 }
 
 
-//return an array of days 
-export function getAppointmentsForDay(state, day) {
+//return an array of Interviewer for a given day 
+export function getInterviewersForDay(state, day) {
 
   //console.log("State", state)
   let filteredDay = [];
   let filteredDayArray = [];
-  let filteredAppointment = [];
+  let filteredInterviewers = [];
 
   if (state.days.length > 0) {
     filteredDay = state.days.filter(days => days.name === day);
     if (filteredDay.length > 0) {
       //console.log("filteredDay", filteredDay)
-      filteredDayArray = filteredDay[0].appointments;
+      filteredDayArray = filteredDay[0].interviewers;
       //console.log("filteredDayArray", filteredDayArray)
       for (let each of filteredDayArray) {
 
         //console.log("element", each)
-        filteredAppointment.push(state.appointments[each])
+        filteredInterviewers.push(state.interviewers[each])
       };
     }
   }
-  return filteredAppointment;
+  return filteredInterviewers;
 }
