@@ -79,6 +79,43 @@ export default function Application(props) {
     })
   }
 
+  function cancelInterview(id) {
+    
+    //create new appointment 
+    // const appointment = {
+    //   ...state.appointments[id],
+    //   interview: { ...interview }
+    // };
+   // to update in appoiments the appointment with same id
+    // const appointments = {
+    //   ...state.appointments,
+    //   [id]: appointment
+    // };
+ 
+    //update the server state
+    const res = axios.delete(`http://localhost:8001/api/appointments/${id}`, {interview: null})
+    
+    //I have to return the promise to use
+    //it inside the save function in the form component
+    return Promise.resolve(res)
+    .then((res) => {
+      console.log("res data from Cancel interview:", res)
+      //set the local state with new value only after the data in the server have been saved
+      //because the server only hold the true data
+      setState({
+        ...state,
+        appointments
+      });
+
+    })
+  }
+
+
+
+
+
+
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -122,6 +159,7 @@ export default function Application(props) {
               interview={interview}
               interviewers={interviewers}
               bookInterview={bookInterview}
+              cancelInterview={cancelInterview}
             />
             );
         })}

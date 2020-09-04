@@ -5,11 +5,15 @@ import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
 import useVisualMode from "hooks/useVisualMode";
 import Form from "components/Appointment/Form";
+import Status from "components/Appointment/Status";
+import Confirm from "components/Appointment/Confirm";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 const SAVING = "SAVING";
+const DELETING = "DELETING";
+const CONFIRM = "CONFIRM";
 
 
 export default function Appointment(props) {
@@ -33,20 +37,34 @@ export default function Appointment(props) {
  //to pass interview id and interviewer to application
  function save (name, interviewer){
  // console.log(`name: ${name}, interviewer:${interviewer}`)
-
   const interview = {
     student: name,
     interviewer
   };
-
   //all time while saving data to server shows "SAVING"
   transition(SAVING)
-
   //only when the promise from the server is done I show the booking
   props.bookInterview(props.id, interview)
   .then (() => {transition(SHOW)})
-
  }
+
+ function edit() {
+ }
+
+ function onDelete() {
+   console.log("I press onDelete")
+   transition(CONFIRM)
+
+  //  if (mode !== DELETING) {
+  //    return
+  //  } else if (mode === DELETING) {
+  //  //transition(DELETING)
+  //  }
+   props.cancelInterview(props.id)
+  .then (() => {transition(EMPTY)})
+  //transition(EMPTY)
+   
+}
 
   return (
 
@@ -57,6 +75,8 @@ export default function Appointment(props) {
       <Show
         student={props.interview.student}
         interviewer={props.interview.interviewer}
+        onEdit={edit}
+        onDelete={onDelete}
       />
     )}
     {mode === CREATE && (<Form
@@ -66,6 +86,9 @@ export default function Appointment(props) {
                     onSave={save}
                     onCancel={back}
                     />)}
+    {mode === DELETING && <Status message={"Deleting"} />}
+    {mode === SAVING && <Status message={"Saving"} />}
+    {mode === CONFIRM && <Confirm onConfirm={ () => transition(DELETING)} onCancel={back} />}
 </article>
   );
 }
