@@ -9,6 +9,7 @@ import Form from "components/Appointment/Form";
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const SAVING = "SAVING";
 
 
 export default function Appointment(props) {
@@ -28,9 +29,23 @@ export default function Appointment(props) {
   }
  }, [props.interview, transition, mode])
 
+
+ //to pass interview id and interviewer to application
  function save (name, interviewer){
-   console.log(`name: ${name}, interviewer:${interviewer}`)
-  transition(SHOW)
+ // console.log(`name: ${name}, interviewer:${interviewer}`)
+
+  const interview = {
+    student: name,
+    interviewer
+  };
+
+  //all time while saving data to server shows "SAVING"
+  transition(SAVING)
+
+  //only when the promise from the server is done I show the booking
+  props.bookInterview(props.id, interview)
+  .then (() => {transition(SHOW)})
+
  }
 
   return (
@@ -47,7 +62,7 @@ export default function Appointment(props) {
     {mode === CREATE && (<Form
                     name=""
                     interviewers={props.interviewers}
-                    interviewer={4}
+                    interviewer={null}
                     onSave={save}
                     onCancel={back}
                     />)}
