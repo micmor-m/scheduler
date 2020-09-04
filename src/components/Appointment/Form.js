@@ -42,7 +42,7 @@ export default function Form(props) {
         /*
           This must be a controlled component
         */
-       value={name ? name : ""}
+       value={name}
        onChange={event => setName(event.target.value)}
       
       />
