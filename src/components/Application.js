@@ -75,7 +75,7 @@ export default function Application(props) {
         ...state,
         appointments
       });
-
+      console.log("State", state)
     })
   }
 
@@ -99,14 +99,18 @@ export default function Application(props) {
     //it inside the save function in the form component
     return Promise.resolve(res)
     .then((res) => {
-      console.log("res data from Cancel interview:", res)
+      //console.log("res data from Cancel interview:", res)
       //set the local state with new value only after the data in the server have been saved
       //because the server only hold the true data
-      setState({
-        ...state,
-        appointments
-      });
-
+      //const setState = id => setState({ ...state, day });
+      //to update in appoiments the appointment with same id
+    //   {
+    //   ...state.appointments,
+    //   [id]: null
+    // };
+      console.log("state from delete", {...state.appointments[id].interview} )
+    //setState({...state.appointments[id].interview}, null )
+    console.log("State", state)
     })
   }
 
