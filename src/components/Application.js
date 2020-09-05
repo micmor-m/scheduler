@@ -68,49 +68,53 @@ export default function Application(props) {
     //it inside the save function in the form component
     return Promise.resolve(res)
     .then((res) => {
-      //console.log("res data:", res)
+      console.log("res data:", res)
       //set the local state with new value only after the data in the server have been saved
       //because the server only hold the true data
       setState({
         ...state,
         appointments
       });
-      console.log("State", state)
+      //console.log("State", state)
     })
   }
 
   function cancelInterview(id) {
-    
-    //create new appointment 
-    // const appointment = {
-    //   ...state.appointments[id],
-    //   interview: { ...interview }
-    // };
-   // to update in appoiments the appointment with same id
-    // const appointments = {
-    //   ...state.appointments,
-    //   [id]: appointment
-    // };
- 
+    // const cancelInterview = (id) => () => {
+    //   return axios.delete(`/api/appointments/${id}`)
     //update the server state
-    const res = axios.delete(`http://localhost:8001/api/appointments/${id}`, {interview: null})
-    
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+      };
+    //to update in appoiments the appointment with same id
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+   
+    const res =  axios.delete(`http://localhost:8001/api/appointments/${id}`) //, {interview: null})
     //I have to return the promise to use
-    //it inside the save function in the form component
+    //it inside the onDelete function in the form component
     return Promise.resolve(res)
-    .then((res) => {
-      //console.log("res data from Cancel interview:", res)
-      //set the local state with new value only after the data in the server have been saved
-      //because the server only hold the true data
-      //const setState = id => setState({ ...state, day });
-      //to update in appoiments the appointment with same id
-    //   {
-    //   ...state.appointments,
-    //   [id]: null
-    // };
-      console.log("state from delete", {...state.appointments[id].interview} )
-    //setState({...state.appointments[id].interview}, null )
-    console.log("State", state)
+      .then((res) => {
+     // console.log("res data from Cancel interview:", res)
+      setState({
+        ...state,
+        appointments
+      });
+
+    //   //set the local state with new value only after the data in the server have been saved
+    //   //because the server only hold the true data
+    //   //let copyState = {...state.appointments[id].interview}
+    //   //console.log("copyState", copyState)
+    //   //copyState = null
+    
+    //   //Is this the proper way to set the state for appointment to NULL?
+    //   // setState(prev => ({
+    //   //   ...state.appointments[id],
+    //   //   interview: null
+    //   // }))
     })
   }
 
