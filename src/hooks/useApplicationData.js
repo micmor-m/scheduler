@@ -36,7 +36,34 @@ function reducer(state, action) {
       }
       const appointments = {...state.appointments, [action.id]: appointment}
 
-      return { ...state,  appointments}
+      //update remaining spots
+      //1- I want update the state of days.spots
+      //2- days is an ARRAY of OBJECT
+      //2- I need to check the id of the appointment changed to see in which day update it
+      const array = [...state.days]
+      //console.log("array from update spots", array)
+      // debugger
+      const newArray = array.map(function (item) {
+        //if interview preset subtract spots
+        if (action.interview) {
+          if (item.appointments.includes(action.id)) {
+            return {...item, ...item.spots = item.spots - 1}
+          } else {
+            return item
+          }
+        } else {
+          if (item.appointments.includes(action.id)) {
+            return {...item, ...item.spots = item.spots + 1}
+          } else {
+            return item
+          }
+        }
+        
+       })
+      
+      //console.log("NEW array from update spots", newArray)
+      
+      return { ...state,  appointments, days: newArray}
         
     }
     default:
