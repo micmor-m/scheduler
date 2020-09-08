@@ -136,7 +136,7 @@ const res = axios.put(`api/appointments/${id}`, {interview: {...interview}})
 //it inside the save function in the form component
 return Promise.resolve(res)
 .then((res) => {
-console.log("res data:", res)
+//console.log("res data:", res)
 //set the local state with new value only after the data in the server have been saved
 //because the server only hold the true data
 //setState({...state, appointments });
