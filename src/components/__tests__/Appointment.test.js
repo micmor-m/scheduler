@@ -22,15 +22,3 @@ describe("Appointment", () => {
     //expect(container.firstChild.className).toBe('todo-item')
   })
 });
-
-describe("Header", () => {
-  it("renders without crashing", () => {
-    render(<Header />);
-  });
-});
-
-describe("Empty", () => {
-  it("renders without crashing", () => {
-    render(<Empty />);
-  });
-});
