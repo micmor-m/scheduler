@@ -7,7 +7,13 @@ The client application communicates with an API server over HTTP, using the JSON
 Jest tests are used through the development of the project for unit test and Cypress for endToEnd testing.
 
 ## Final Product
-!["Screenshot of main page"]()
+!["Screenshot of main page"](https://github.com/micmor-m/scheduler/blob/master/docs/main-page.png?raw=true)
+!["Screenshot of appointment form"](https://github.com/micmor-m/scheduler/blob/master/docs/appointment-form.png?raw=true)
+!["Screenshot of appointment form with input valdation"](https://github.com/micmor-m/scheduler/blob/master/docs/input-validation.png?raw=true)
+!["Screenshot of confirmation message"](https://github.com/micmor-m/scheduler/blob/master/docs/confirmation%20message.png?raw=true)
+!["Screenshot of error message"](https://github.com/micmor-m/scheduler/blob/master/docs/error-message.png?raw=true)
+
+
 
 ## Dependencies
 
