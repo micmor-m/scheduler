@@ -49,7 +49,7 @@ npm run storybook
 ## API Server
 The application is connected to an API server to persist interview data to a database.
 To create and configure it fork and clone the scheduler-api into a new directory (NOT within the scheduler directory) and follow the README.md instructions:
-![https://github.com/lighthouse-labs/scheduler-api]
+https://github.com/lighthouse-labs/scheduler-api
 
 ### Behaviour
 - Interviews can be booked between Monday and Friday.
