@@ -1,5 +1,3 @@
-import { cleanup } from "@testing-library/react";
-
 const fixtures = {
   days: [
     {
@@ -97,8 +95,6 @@ export default {
       status: 204,
       statusText: "No Content" 
     })
-  }),
-
-  cleanUp: (() => {})
+  })
 }
 

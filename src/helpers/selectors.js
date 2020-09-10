@@ -1,7 +1,6 @@
-//return an array of days 
+//return an array of appointments for a given day
 export default function getAppointmentsForDay(state, day) {
 
-  //console.log("State", state)
   let filteredDay = [];
   let filteredDayArray = [];
   let filteredAppointment = [];
@@ -9,18 +8,16 @@ export default function getAppointmentsForDay(state, day) {
   if (state.days.length > 0) {
     filteredDay = state.days.filter(days => days.name === day);
     if (filteredDay.length > 0) {
-      //console.log("filteredDay", filteredDay)
       filteredDayArray = filteredDay[0].appointments;
-      //console.log("filteredDayArray", filteredDayArray)
-      for (let each of filteredDayArray) {
 
-        //console.log("element", each)
+      for (let each of filteredDayArray) {
         filteredAppointment.push(state.appointments[each])
       };
     }
   }
   return filteredAppointment;
 }
+
 
 //return a new object containing the interview data when we pass it an
 //object that contains the interviewer.
@@ -31,8 +28,10 @@ export function getInterview(state, interview) {
     return null
   } else {
 
-    return {student:  interview.student,
-            interviewer: state.interviewers[interview.interviewer]}
+    return {
+      student: interview.student,
+      interviewer: state.interviewers[interview.interviewer]
+    }
   }
 
 }
@@ -41,7 +40,6 @@ export function getInterview(state, interview) {
 //return an array of Interviewer for a given day 
 export function getInterviewersForDay(state, day) {
 
-  //console.log("State", state)
   let filteredDay = [];
   let filteredDayArray = [];
   let filteredInterviewers = [];
@@ -49,12 +47,8 @@ export function getInterviewersForDay(state, day) {
   if (state.days.length > 0) {
     filteredDay = state.days.filter(days => days.name === day);
     if (filteredDay.length > 0) {
-      //console.log("filteredDay", filteredDay)
       filteredDayArray = filteredDay[0].interviewers;
-      //console.log("filteredDayArray", filteredDayArray)
       for (let each of filteredDayArray) {
-
-        //console.log("element", each)
         filteredInterviewers.push(state.interviewers[each])
       };
     }
