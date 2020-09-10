@@ -1,3 +1,4 @@
+import { cleanup } from "@testing-library/react";
 
 const fixtures = {
   days: [
@@ -96,15 +97,8 @@ export default {
       status: 204,
       statusText: "No Content" 
     })
-  })
+  }),
 
-  // put: jest.fn(url => {
-  //   console.log("From line 102 axios")
-  //   return Promise.reject({
-  //     status: 400,
-  //     statusText: "Could not save appointment" 
-
-  //   })
-  // })
+  cleanUp: (() => {})
 }
 
