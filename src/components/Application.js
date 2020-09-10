@@ -5,7 +5,6 @@ import Appointment from "components/Appointment/index";
 import getAppointmentsForDay from "../helpers/selectors";
 import { getInterview, getInterviewersForDay } from "../helpers/selectors";
 import useApplicationData from "../hooks/useApplicationData";
-//const axios = require('axios').default;
 
 
 export default function Application(props) {
