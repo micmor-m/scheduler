@@ -36,28 +36,25 @@ function reducer(state, action) {
         //1- I want update the state of days.spots
         //2- days is an ARRAY of OBJECT
         //2- I need to check the id of the appointment changed to see in which day update it
-        const array = [...state.days]
-
-        const newArray = array.map(function (item) {
-
-          if (action.interview) {
-            if (item.appointments.includes(action.id)) {
-              return { ...item, ...item.spots = item.spots - 1 }
-            } else {
-              return item
-            }
-          } else {
-            if (item.appointments.includes(action.id)) {
-              return { ...item, ...item.spots = item.spots + 1 }
-            } else {
-              return item
+        
+        const daysArray = state.days.map((day) => {
+          for (let appointment of day.appointments) {
+            if (action.id === appointment) {
+              if (action.interview && !state.appointments[action.id].interview) {
+                return { ...day, spots: day.spots - 1 };
+              } else if (
+                !action.interview && 
+                state.appointments[action.id].interview)
+              {
+                return { ...day, spots: day.spots + 1};
+              }
             }
           }
-
+          return day
         })
 
 
-        return { ...state, appointments, days: newArray }
+        return { ...state, appointments, days: daysArray }
 
       }
     default:

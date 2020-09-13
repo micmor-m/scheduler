@@ -29,7 +29,7 @@ describe("Application", () => {
     });
   })
 
-  xit("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
+ xit("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
     const { container } = render(<Application />);
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -112,7 +112,7 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
     //confirm the number of spot is still the same
-    expect(getByText(day, "no spots remaining")).toBeInTheDocument();
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
   });
 
   xit("shows the save error when failing to save an appointment", async () => {
