@@ -5,7 +5,6 @@ import "components/Button.scss";
 const classNames = require('classnames');
 
 export default function Button(props) {
-
   const buttonClass = classNames({
     'button': true,
     'button--confirm': props.confirm,
@@ -21,5 +20,4 @@ export default function Button(props) {
       {props.children}
     </button>
   );
-
 }

@@ -6,9 +6,7 @@ import getAppointmentsForDay from "../helpers/selectors";
 import { getInterview, getInterviewersForDay } from "../helpers/selectors";
 import useApplicationData from "../hooks/useApplicationData";
 
-
 export default function Application(props) {
-
   const {
     state,
     setDay,
@@ -18,7 +16,6 @@ export default function Application(props) {
 
   //filter from the state only the interviewer of the day
   const interviewers = getInterviewersForDay(state, state.day)
-
   //filter from the state only the appointment of the day
   const appointments = getAppointmentsForDay(state, state.day)
 
@@ -46,9 +43,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {appointments.map((appointment) => {
-
           const interview = getInterview(state, appointment.interview);
-
           return (
             <Appointment
               key={appointment.id}

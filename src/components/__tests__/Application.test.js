@@ -7,7 +7,6 @@ import axios from "axios";
 
 afterEach(cleanup);
 
-
 describe("Application", () => {
 
   const interviewers = [
@@ -20,7 +19,6 @@ describe("Application", () => {
 
   it("defaults to Monday and changes the schedule when a new day is selected", () => {
     const { getByText } = render(<Application />);
-
     //waitForElement function returns a promise
     return waitForElement(() => getByText("Monday")).then(() => {
       //when promise resolve we fire event to simulate user click Tuesday
@@ -31,7 +29,6 @@ describe("Application", () => {
 
  xit("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
     const { container } = render(<Application />);
-
     await waitForElement(() => getByText(container, "Archie Cohen"));
     //appointment is an empty appointment
     const appointments = getAllByTestId(container, "appointment");
@@ -46,7 +43,6 @@ describe("Application", () => {
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
     //simulate to save the form  
     fireEvent.click(getByText(appointment, "Save"));
-
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
     //Find the specific day node that contains the text "Monday
@@ -59,10 +55,8 @@ describe("Application", () => {
   xit("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     //Render the Application.
     const { container } = render(<Application />);
-
     //Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
-
     const appointment = getAllByTestId(container, "appointment").find(
       appointment => queryByText(appointment, "Archie Cohen")
     );
@@ -86,10 +80,8 @@ describe("Application", () => {
   xit("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
     //Render the Application.
     const { container, debug } = render(<Application />);
-
     //Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
-
     const appointment = getAllByTestId(container, "appointment").find(
       appointment => queryByText(appointment, "Archie Cohen")
     );
@@ -106,7 +98,6 @@ describe("Application", () => {
     //confirm the saving message is showing
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
-
     //Find the specific day node that contains the text "Monday
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
@@ -149,7 +140,6 @@ describe("Application", () => {
     const { container } = render(<Application />);
     //Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
-
     const appointment = getAllByTestId(container, "appointment").find(
       appointment => queryByText(appointment, "Archie Cohen")
     );
@@ -166,7 +156,5 @@ describe("Application", () => {
     fireEvent.click(getByAltText(appointment, "Close"));
     //Simulate to be back at the form page
     await waitForElement(() => getByText(container, "Archie Cohen"));
-
   });
-
 });

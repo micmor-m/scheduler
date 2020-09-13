@@ -18,7 +18,6 @@ export default function getAppointmentsForDay(state, day) {
   return filteredAppointment;
 }
 
-
 //return a new object containing the interview data when we pass it an
 //object that contains the interviewer.
 //Otherwise, the function should return null.
@@ -33,9 +32,7 @@ export function getInterview(state, interview) {
       interviewer: state.interviewers[interview.interviewer]
     }
   }
-
 }
-
 
 //return an array of Interviewer for a given day 
 export function getInterviewersForDay(state, day) {

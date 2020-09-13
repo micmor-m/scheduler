@@ -13,6 +13,5 @@ describe("Appointment", () => {
 
   it('should have be className "todo-item"', () => {
     const { container } = render(<Appointment time={'5pm'} />)
-
   })
 });

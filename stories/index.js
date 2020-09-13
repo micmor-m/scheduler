@@ -19,8 +19,6 @@ import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
 import Form from "components/Appointment/Form";
 
-
-
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -36,7 +34,6 @@ storiesOf("Button", module)
       Disabled
     </Button>
   ));
-
 
 storiesOf("DayListItem", module)
   .addParameters({
@@ -78,8 +75,6 @@ storiesOf("DayList", module)
     <DayList days={days} day={"Tuesday"} setDay={action("setDay")} />
   ));
 
-
-
 //InterviewerListItem stories
 const interviewer = {
   id: 1,
@@ -115,7 +110,6 @@ storiesOf("InterviewerListItem", module)
     />
   ));
 
-
 const interviewers = [
   { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
   { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
@@ -141,7 +135,6 @@ storiesOf("InterviewerList", module)
       setInterviewer={action("setInterviewer")}
     />
   ));
-
 
 //Stories of APPOINTMENT
 storiesOf("Appointment", module)
@@ -185,9 +178,7 @@ storiesOf("Appointment", module)
     onCancel={action("onCancel")}
   />)
   .add("Edit Form", () => <Form
-
     interviewers={interviewers}
-
     onSave={action("onSave")}
     onCancel={action("onCancel")}
   />)

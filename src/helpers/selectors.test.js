@@ -1,6 +1,5 @@
 import getAppointmentsForDay, { getInterview, getInterviewersForDay } from "helpers/selectors";
 
-
 const state = {
   days: [
     {
@@ -31,7 +30,6 @@ const state = {
       interview: { student: "Chad Takahashi", interviewer: 2 }
     }
   },
-
   interviewers: {
     "1": {
       id: 1,
@@ -55,8 +53,6 @@ const state = {
     }
   }
 };
-
-
 
 test("getAppointmentsForDay returns an array", () => {
   const result = getAppointmentsForDay(state, "Monday");

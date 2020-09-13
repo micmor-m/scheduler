@@ -21,7 +21,6 @@ const ERROR_DELETE = "ERROR_DELETE"
 
 
 export default function Appointment(props) {
-
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -35,10 +34,8 @@ export default function Appointment(props) {
     }
   }, [props.interview, transition, mode])
 
-
   //to pass interview id and interviewer to application
   function save(name, interviewer) {
-
     const interview = {
       student: name,
       interviewer
@@ -51,19 +48,14 @@ export default function Appointment(props) {
       .catch(error => transition(ERROR_SAVE, true));
   }
 
-
   function onDelete() {
     transition(DELETING, true)
-
     props.cancelInterview(props.id)
       .then(() => { transition(EMPTY) })
       .catch(error => { transition(ERROR_DELETE, true) })
-
-
   }
 
   return (
-
     <article data-testid="appointment" className="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}

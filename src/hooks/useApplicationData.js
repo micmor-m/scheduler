@@ -14,7 +14,6 @@ function reducer(state, action) {
     case SET_DAY:
       return {
         ...state, day: action.day
-
       }
     case SET_APPLICATION_DATA:
       return {
@@ -36,7 +35,6 @@ function reducer(state, action) {
         //1- I want update the state of days.spots
         //2- days is an ARRAY of OBJECT
         //2- I need to check the id of the appointment changed to see in which day update it
-        
         const daysArray = state.days.map((day) => {
           for (let appointment of day.appointments) {
             if (action.id === appointment) {
@@ -52,10 +50,7 @@ function reducer(state, action) {
           }
           return day
         })
-
-
         return { ...state, appointments, days: daysArray }
-
       }
     default:
       throw new Error(
@@ -77,7 +72,6 @@ export default function useApplicationData(props) {
 
   // 1 from Application.js
   const setDay = day => dispatch({ type: SET_DAY, day });
-
 
   // 2 from Application.js
   //get data from the server
@@ -108,7 +102,6 @@ export default function useApplicationData(props) {
         //because the server only hold the true data
         dispatch({ type: SET_INTERVIEW, id, interview });
       })
-
   }
 
   // 4 from Application.js
@@ -122,7 +115,5 @@ export default function useApplicationData(props) {
         dispatch({ type: SET_INTERVIEW, id, interview: null });
       })
   }
-
   return { state, setDay, bookInterview, cancelInterview }
-
 }
