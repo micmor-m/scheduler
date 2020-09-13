@@ -4,7 +4,7 @@ import "components/Application.scss";
 
 const axios = require('axios').default;
 
-/////////////REDUCER
+//REDUCER to set the state of app all in the same place 
 const SET_DAY = "SET_DAY";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 const SET_INTERVIEW = "SET_INTERVIEW";
@@ -59,8 +59,6 @@ function reducer(state, action) {
   }
 }
 
-
-//////////// USE APPLICATION DATA
 export default function useApplicationData(props) {
 
   const [state, dispatch] = useReducer(reducer, {
@@ -79,11 +77,8 @@ export default function useApplicationData(props) {
     const days = axios.get("/api/days")
     const appointments = axios.get("/api/appointments")
     const interviewers = axios.get("/api/interviewers")
-    Promise.all([
-      Promise.resolve(days),
-      Promise.resolve(appointments),
-      Promise.resolve(interviewers)
-    ]).then((all) => {
+    Promise.all([days, appointments, interviewers])
+    .then((all) => {
       dispatch({ type: SET_APPLICATION_DATA, days: all[0].data, appointments: all[1].data, interviewers: all[2].data });
     })
   }, []);
