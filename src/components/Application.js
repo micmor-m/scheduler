@@ -5,7 +5,7 @@ import Appointment from "components/Appointment/index";
 import getAppointmentsForDay from "../helpers/selectors";
 import { getInterview, getInterviewersForDay } from "../helpers/selectors";
 import useApplicationData from "../hooks/useApplicationData";
-import useVisualMode from "../hooks/useVisualMode";
+// import useVisualMode from "../hooks/useVisualMode";
 
 export default function Application(props) {
   const { state, setDay, bookInterview, cancelInterview } =
