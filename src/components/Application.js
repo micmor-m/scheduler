@@ -5,19 +5,16 @@ import Appointment from "components/Appointment/index";
 import getAppointmentsForDay from "../helpers/selectors";
 import { getInterview, getInterviewersForDay } from "../helpers/selectors";
 import useApplicationData from "../hooks/useApplicationData";
+import useVisualMode from "../hooks/useVisualMode";
 
 export default function Application(props) {
-  const {
-    state,
-    setDay,
-    bookInterview,
-    cancelInterview
-  } = useApplicationData();
+  const { state, setDay, bookInterview, cancelInterview } =
+    useApplicationData();
 
   //filter from the state only the interviewer of the day
-  const interviewers = getInterviewersForDay(state, state.day)
+  const interviewers = getInterviewersForDay(state, state.day);
   //filter from the state only the appointment of the day
-  const appointments = getAppointmentsForDay(state, state.day)
+  const appointments = getAppointmentsForDay(state, state.day);
 
   return (
     <main className="layout">
@@ -29,11 +26,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList
-            days={state.days}
-            day={state.day}
-            setDay={setDay}
-          />
+          <DayList days={state.days} day={state.day} setDay={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
