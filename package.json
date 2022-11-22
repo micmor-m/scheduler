@@ -11,7 +11,7 @@
     "normalize.css": "^8.0.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-scripts": "3.0.0"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,7 +41,7 @@
     "@storybook/addon-backgrounds": "^5.3.21",
     "@storybook/addon-links": "^5.3.21",
     "@storybook/addons": "^5.3.21",
-    "@storybook/react": "^5.3.21",
+    "@storybook/react": "^6.5.13",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^8.0.9",
     "@testing-library/react-hooks": "^3.7.0",
